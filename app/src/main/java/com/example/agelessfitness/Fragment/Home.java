@@ -1,6 +1,7 @@
 package com.example.agelessfitness.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.agelessfitness.R;
+import com.example.agelessfitness.Workout_Activity;
 
 
 public class Home extends Fragment {
@@ -59,8 +61,14 @@ public class Home extends Fragment {
         pageDirectories();
     }
 
+
     private void pageDirectories() {
 
-
+        ll_wheelChair.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(mContext, Workout_Activity.class));
+            }
+        });
     }
 }

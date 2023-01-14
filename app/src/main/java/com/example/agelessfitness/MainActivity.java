@@ -54,7 +54,14 @@ public class MainActivity extends AppCompatActivity {
 
         initWidget();
 
+        initUI();
+
         pageDirectories();
+
+    }
+
+    private void initUI() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.drawer_layout, new Home()).commit();
 
     }
 
@@ -69,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_home:
                         //---> Lead to the home page
                         fragment = new Home();
-                        onBackPressed();
                         break;
 
                     case R.id.nav_leaderboard:
@@ -96,7 +102,8 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                 }
-                return false;
+                getSupportFragmentManager().beginTransaction().replace(R.id.drawer_layout, fragment).commit();
+                return true;
             }
         });
 

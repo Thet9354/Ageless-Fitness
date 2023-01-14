@@ -18,6 +18,7 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/btn_back"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:src="@drawable/workout_back"
@@ -25,6 +26,7 @@
                 android:layout_marginStart="20dp"/>
 
             <ImageView
+                android:id="@+id/imgView_wheelChair"
                 android:layout_width="170dp"
                 android:layout_height="170dp"
                 android:src="@drawable/circle_wheelchairpic"
@@ -60,6 +62,456 @@
                 android:textSize="15sp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="15dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Exercises"
+                android:textColor="#7F7F7F"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="90dp"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_armRaises"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="10dp"
+                app:contentPadding="20dp">
+
+                <LinearLayout
+                    android:id="@+id/ll_armRaises"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/arm"
+                            android:layout_marginStart="25dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="20 x Arm Raises"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="20dp"/>
+
+                        <ImageView
+                            android:id="@+id/btn_armRaises_arrow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/forward_ic"
+                            android:layout_gravity="center_vertical|end"
+                            android:layout_marginStart="100dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_armRaisesDemo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:visibility="gone"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="150dp"
+                            android:src="@drawable/arm_raises_demo"/>
+                        
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1. Begin with your arm at your sides, palms facing downward."
+                            android:textColor="@color/black"
+                            android:layout_marginTop="5dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2. Slowly raise your arms out to the sides and up above your head, keeping your elbows straight"
+                            android:textColor="@color/black"
+                            android:layout_marginTop="10dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="3. Hold for a moment at the top, then slowly lower your arms back to your sides."
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:layout_marginTop="10dp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_sideTwist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="10dp"
+                app:contentPadding="20dp">
+
+                <LinearLayout
+                    android:id="@+id/ll_sideTwist"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/sidetwist"
+                            android:layout_marginStart="25dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="20 x Side Twists"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="20dp"/>
+
+                        <ImageView
+                            android:id="@+id/btn_sideTwist_arrow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/forward_ic"
+                            android:layout_gravity="center_vertical|end"
+                            android:layout_marginStart="100dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_sideTwistDemo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:visibility="gone"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="150dp"
+                            android:src="@drawable/arm_raises_demo"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1. Start by sitting on the floor with your legs extended straight out in front of you."
+                            android:textColor="@color/black"
+                            android:layout_marginTop="5dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2. Bend your knees and place your feet flat on the floor, hip-width apart."
+                            android:textColor="@color/black"
+                            android:layout_marginTop="10dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="3. Sit up tall and engage your core muscles."
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:layout_marginTop="10dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="4. Place your right hand behind your right hip and your left hand behind your left hip."
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:layout_marginTop="10dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="5. Slowly twist your torso to the right, bringing your right elbow towards your left knee."
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:layout_marginTop="10dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="6. Hold the twist for a few seconds and then slowly release."
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:layout_marginTop="10dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="7. Repeat on the other side by twisting to the left and bringing your left elbow towards your right knee."
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:layout_marginTop="10dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="8. Repeat the twist several times on both sides."
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:layout_marginTop="10dp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_airplaneArms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="10dp"
+                app:contentPadding="20dp">
+
+                <LinearLayout
+                    android:id="@+id/ll_airplaneArms"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/airplanearm"
+                            android:layout_marginStart="25dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="20 x Airplane Arms"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="20dp"/>
+
+                        <ImageView
+                            android:id="@+id/btn_airplaneArms_arrow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/forward_ic"
+                            android:layout_gravity="center_vertical|end"
+                            android:layout_marginStart="80dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_airplaneArmsDemo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:visibility="gone"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="150dp"
+                            android:src="@drawable/arm_raises_demo"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1. Start by standing with your feet hip-width apart and your knees slightly bent."
+                            android:textColor="@color/black"
+                            android:layout_marginTop="5dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2. Bring your arms straight out in front of you, parallel to the ground."
+                            android:textColor="@color/black"
+                            android:layout_marginTop="10dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="3. Slowly raise your arms out to the sides, keeping them parallel to the ground, as if you were an airplane flying through the sky."
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:layout_marginTop="10dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="4. Once your arms are at shoulder level, hold the position for a few seconds."
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:layout_marginTop="10dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="5. Slowly lower your arms back to the starting position."
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:layout_marginTop="10dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="6. Repeat the movement several times."
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:layout_marginTop="10dp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_chestExpansions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="10dp"
+                app:contentPadding="20dp">
+
+                <LinearLayout
+                    android:id="@+id/ll_chestExpansions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/chest_expansion"
+                            android:layout_marginStart="25dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="20 x Chest Expansions"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="20dp"/>
+
+                        <ImageView
+                            android:id="@+id/btn_chestExpansions_arrow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/forward_ic"
+                            android:layout_gravity="center_vertical|end"
+                            android:layout_marginStart="60dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_chestExpansionsDemo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:visibility="gone"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="150dp"
+                            android:src="@drawable/arm_raises_demo"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1. Start by standing with your feet hip-width apart and your arms at your sides."
+                            android:textColor="@color/black"
+                            android:layout_marginTop="5dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2. Bring your arms straight out in front of you, with your palms facing down."
+                            android:textColor="@color/black"
+                            android:layout_marginTop="10dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="3. Slowly raise your arms out to the sides, keeping them straight, until they are at shoulder level."
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:layout_marginTop="10dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="3. Slowly raise your arms out to the sides, keeping them straight, until they are at shoulder level."
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:layout_marginTop="10dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="4. Hold the position for a few seconds and then slowly release."
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:layout_marginTop="10dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="5. Repeat the movement several times."
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:layout_marginTop="10dp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
 
