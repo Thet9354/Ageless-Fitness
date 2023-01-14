@@ -1,66 +1,66 @@
 package com.example.agelessfitness.Fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.example.agelessfitness.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Articles#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class Articles extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private LinearLayout ll_beatTheClock, ll_taiChi, ll_running;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private ImageView btn_beatTheClock_share, btn_taiChi_share, btn_running_share;
 
-    public Articles() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Articles.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Articles newInstance(String param1, String param2) {
-        Articles fragment = new Articles();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    private Context mContext;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_articles, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_articles, container, false);
+
+        mContext = getActivity();
+
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        // Inflate the layout for this fragment
+        return rootView;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        findViews(view);
+    }
+
+    private void findViews(View v) {
+
+        //LinearLayout
+        ll_beatTheClock = v.findViewById(R.id.ll_beatTheClock);
+        ll_taiChi = v.findViewById(R.id.ll_taiChi);
+        ll_running = v.findViewById(R.id.ll_running);
+
+
+        //Imageview
+        btn_beatTheClock_share = v.findViewById(R.id.btn_beatTheClock_share);
+        btn_taiChi_share = v.findViewById(R.id.btn_taiChi_share);
+        btn_running_share = v.findViewById(R.id.btn_running_share);
+
+        pageDirectories();
+    }
+
+    private void pageDirectories() {
+
     }
 }

@@ -25,8 +25,6 @@ public class Workout_Activity extends AppCompatActivity {
 
         initWidget();
 
-
-
         pageDirectories();
     }
 

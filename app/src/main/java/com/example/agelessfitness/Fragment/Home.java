@@ -15,6 +15,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.example.agelessfitness.LegStretchWorkout_Activity;
 import com.example.agelessfitness.R;
 import com.example.agelessfitness.Workout_Activity;
 
@@ -64,10 +65,17 @@ public class Home extends Fragment {
 
     private void pageDirectories() {
 
-        ll_wheelChair.setOnClickListener(new View.OnClickListener() {
+        btn_startWheelChair.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(mContext, Workout_Activity.class));
+            }
+        });
+
+        btn_startLegStretches.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(mContext, LegStretchWorkout_Activity.class));
             }
         });
     }
