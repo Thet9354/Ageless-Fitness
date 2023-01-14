@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/home"
+            android:title="Home"/>
+
+        <item
+            android:id="@+id/nav_leaderboard"
+            android:icon="@drawable/leaderboard"
+            android:title="Leaderboard"/>
+
+        <item
+            android:id="@+id/nav_progressTracker"
+            android:icon="@drawable/ic_progress"
+            android:title="Progress Tacker"/>
+
+        <item
+            android:id="@+id/nav_article"
+            android:icon="@drawable/articles"
+            android:title="Article"/>
+
+        <item
+            android:id="@+id/nav_signOut"
+            android:title="Sign Out"/>
+
+        <item
+            android:id="@+id/nav_Exit"
+            android:title="Exit"/>
+
+    </group>
+
+</menu>
