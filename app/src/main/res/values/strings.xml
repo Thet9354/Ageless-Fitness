@@ -14,4 +14,25 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="competitor_name">
+        <item name="John">John</item>
+        <item name="Omar">Omar</item>
+        <item name="Linda">Linda</item>
+        <item name="Mary">Mary</item>
+    </string-array>
+
+    <string-array name="competitor_duration">
+        <item name="45 mins">45 mins</item>
+        <item name="40 mins">40 mins</item>
+        <item name="40 mins">40 mins</item>
+        <item name="30 mins">30 mins</item>
+    </string-array>
+
+    <string-array name="competitor_calories">
+        <item name="186 kcal">186 kcal</item>
+        <item name="169 kcal">169 kcal</item>
+        <item name="132 kcal">132 kcal</item>
+        <item name="76 kcal">76 kcal</item>
+    </string-array>
 </resources>
