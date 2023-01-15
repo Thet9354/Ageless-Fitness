@@ -1,66 +1,91 @@
 package com.example.agelessfitness.Fragment;
 
+import android.app.Dialog;
+import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.CalendarView;
+import android.widget.TextView;
 
 import com.example.agelessfitness.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link LeaderBoard#newInstance} factory method to
- * create an instance of this fragment.
- */
+import org.w3c.dom.Text;
+
+
 public class LeaderBoard extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private CalendarView cv_leaderBoard;
+    private com.google.android.material.progressindicator.CircularProgressIndicator PI_calories;
+    private TextView txtView_calories;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private Context mContext;
 
-    public LeaderBoard() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment LeaderBoard.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static LeaderBoard newInstance(String param1, String param2) {
-        LeaderBoard fragment = new LeaderBoard();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_leader_board, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_leader_board, container, false);
+
+        mContext = getActivity();
+
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        // Inflate the layout for this fragment
+        return rootView;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        findViews(view);
+    }
+
+    private void findViews(View v) {
+
+        //CalendarView
+        cv_leaderBoard = v.findViewById(R.id.cv_leaderBoard);
+
+        //CircularProgressIndicator
+        PI_calories = v.findViewById(R.id.PI_calories);
+
+        //TextView
+        txtView_calories = v.findViewById(R.id.txtView_calories);
+
+
+        initUI();
+    }
+
+    private void initUI() {
+
+        showDialog();
+    }
+
+    private void showDialog() {
+
+        final Dialog dialog = new Dialog(mContext);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.bottom_sheet_layout);
+
+        //TODO: Initialize the recylerView and put whatever happens to it over here
+
+
+        dialog.show();
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        dialog.getWindow().setGravity(Gravity.BOTTOM);
     }
 }
