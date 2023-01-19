@@ -3,6 +3,7 @@ package com.example.agelessfitness;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
@@ -10,13 +11,17 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import java.io.Serializable;
+
 public class Workout_Activity extends AppCompatActivity {
 
-    private ImageView btn_back;
+    private ImageView btn_back, imgView_wheelChair;
 
     private CardView cv_armRaises, cv_sideTwist, cv_airplaneArms, cv_chestExpansions;
 
     private LinearLayout ll_armRaises, ll_armRaisesDemo, ll_sideTwistDemo, ll_airplaneArmsDemo, ll_chestExpansionsDemo;
+
+    private String workouts = "Wheel-Chair Friendly Workout";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +34,16 @@ public class Workout_Activity extends AppCompatActivity {
     }
 
     private void pageDirectories() {
+
+        imgView_wheelChair.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Workout_timer.class);
+                intent.putExtra("Workout", workouts);
+                startActivity(intent);
+            }
+        });
+
 
         cv_armRaises.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,6 +120,7 @@ public class Workout_Activity extends AppCompatActivity {
 
         //ImageView
         btn_back = findViewById(R.id.btn_back);
+        imgView_wheelChair = findViewById(R.id.imgView_wheelChair);
 
         //CardView
         cv_armRaises = findViewById(R.id.cv_armRaises);

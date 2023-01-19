@@ -9,8 +9,8 @@
     <color name="white">#FFFFFFFF</color>
 
 
-    <color name="blue">#1B7EF6</color>
-    <color name="red">#DB5D5E</color>
+    <color name="blue">#6AA3F1</color>
+    <color name="red">#ff6961</color>
     <color name="black_background">#121212</color>
     <color name="light_grey">#2C2C2C</color>
     <color name="dark_grey">#1E1E1E</color>
@@ -31,4 +31,7 @@
 
     <color name="olive_green">#7A715B</color>
     <color name="dark_olive_green">#3B362A</color>
+
+    <color name="metal_silver">#aaa9ad</color>
+    <color name="themeColor">#6AA3F1</color>
 </resources>

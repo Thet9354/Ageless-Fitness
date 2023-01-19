@@ -1,66 +1,121 @@
 package com.example.agelessfitness.Fragment;
 
+import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 
 import com.example.agelessfitness.R;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.utils.ColorTemplate;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProgressTracker#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+
 public class ProgressTracker extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private BarChart bar_chart;
+    private PieChart pie_chart;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private androidx.recyclerview.widget.RecyclerView rv_pastProgress;
 
-    public ProgressTracker() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProgressTracker.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ProgressTracker newInstance(String param1, String param2) {
-        ProgressTracker fragment = new ProgressTracker();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    private Context mContext;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_progress_tracker, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_progress_tracker, container, false);
+
+        mContext = getActivity();
+
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
+        // Inflate the layout for this fragment
+        return rootView;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        findViews(view);
+    }
+
+    private void findViews(View v) {
+
+        bar_chart = v.findViewById(R.id.bar_chart);
+        pie_chart = v.findViewById(R.id.pie_chart);
+
+        rv_pastProgress = v.findViewById(R.id.rv_pastProgress);
+
+        initUI();
+    }
+
+    private void initUI() {
+
+        //Initialize array list
+        ArrayList<BarEntry> barEntries = new ArrayList<>();
+        ArrayList<PieEntry> pieEntries = new ArrayList<>();
+
+        //Use for loop
+        for (int i = 0; i<8; i++)
+        {
+            //Convert to float
+            float value = (float) (i*10.0);
+            //Initialize bar chart
+            BarEntry barEntry = new BarEntry(i, value);
+            //Initialize pie chart entry
+            PieEntry pieEntry = new PieEntry(i,value);
+            //Add values in array list
+            barEntries.add(barEntry);
+            pieEntries.add(pieEntry);
+        }
+
+        //Initial pie data set
+        BarDataSet barDataSet = new BarDataSet(barEntries, "Weekly");
+        //Set colors
+        barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+        //Hide draw values
+        barDataSet.setDrawValues(false);
+        //Set pie data
+        bar_chart.setData(new BarData(barDataSet));
+        //Set animation
+        bar_chart.animateY(3000);
+        //Hide description
+        bar_chart.getDescription().setText("Activity Progress");
+        bar_chart.getDescription().setTextSize(15);
+        bar_chart.getDescription().setTextColor(Color.BLUE);
+
+        //Initial pie data set
+        PieDataSet pieDataSet = new PieDataSet(pieEntries, "Weekly");
+        //Set colors
+        pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+        //Set pie data
+        pie_chart.setData(new PieData(pieDataSet));
+        //Set animation
+        pie_chart.animateXY(3000, 3000);
+        //Hide description
+        pie_chart.getDescription().setEnabled(false);
+
+
+        //Init RecyclerView
+
+
+
     }
 }
