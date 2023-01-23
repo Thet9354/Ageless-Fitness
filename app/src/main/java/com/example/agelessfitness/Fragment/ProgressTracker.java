@@ -1,6 +1,7 @@
 package com.example.agelessfitness.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -12,8 +13,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Button;
 
 import com.example.agelessfitness.R;
+import com.example.agelessfitness.posedetector.ChooserActivity;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.BarData;
@@ -30,6 +33,8 @@ public class ProgressTracker extends Fragment {
 
     private BarChart bar_chart;
     private PieChart pie_chart;
+
+    private Button btn_poseDetector;
 
     private androidx.recyclerview.widget.RecyclerView rv_pastProgress;
 
@@ -60,10 +65,23 @@ public class ProgressTracker extends Fragment {
 
         bar_chart = v.findViewById(R.id.bar_chart);
         pie_chart = v.findViewById(R.id.pie_chart);
+        btn_poseDetector = v.findViewById(R.id.btn_poseDetector);
+
 
         rv_pastProgress = v.findViewById(R.id.rv_pastProgress);
 
         initUI();
+
+        pageDirectories();
+    }
+
+    private void pageDirectories() {
+        btn_poseDetector.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(mContext, ChooserActivity.class));
+            }
+        });
     }
 
     private void initUI() {
@@ -114,8 +132,6 @@ public class ProgressTracker extends Fragment {
 
 
         //Init RecyclerView
-
-
 
     }
 }
