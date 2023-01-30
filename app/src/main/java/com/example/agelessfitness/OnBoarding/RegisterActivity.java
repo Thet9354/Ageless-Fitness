@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.agelessfitness.Database.DatabaseHelper;
 import com.example.agelessfitness.MainActivity;
 import com.example.agelessfitness.R;
 
@@ -23,6 +25,8 @@ public class RegisterActivity extends AppCompatActivity {
     private Button btn_signUp;
 
     private String mUsername, mPassword;
+
+    DatabaseHelper myDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +83,19 @@ public class RegisterActivity extends AppCompatActivity {
     private void addData() {
 
         //TODO: Add the user to firebase later
+
+        myDb = new DatabaseHelper(this);
+        boolean isUsernameTaken = myDb.isUsernameTaken(mUsername);
+        if (isUsernameTaken) {
+            Toast.makeText(RegisterActivity.this, "Username taken", Toast.LENGTH_SHORT).show();
+        } else {
+            boolean isInserted = myDb.insertData(mUsername, mPassword);
+            if (isInserted) {
+                Toast.makeText(RegisterActivity.this, "Data inserted", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(RegisterActivity.this, "Data not inserted", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     private boolean validatePassword() {
@@ -95,21 +112,19 @@ public class RegisterActivity extends AppCompatActivity {
     private boolean validateUsername() {
 
         //Regex pattern to allow only alphabets and numbers
-        Pattern regexUserName = Pattern.compile("a-zA-Z0-9]+");
-        Matcher matcher = regexUserName.matcher(mUsername);
+        String userNamePattern = "^[a-zA-Z0-9]+$";
 
         if (mUsername.isEmpty())
         {
             editTxt_username.setError("Required");
             return false;
         }
-        else if (!matcher.matches())
-        {
+        else if (mUsername.matches(userNamePattern)) {
+            return true;
+        } else {
             editTxt_username.setError("Invalid Username");
             return false;
         }
-        else
-            return true;
     }
 
     private void initWidget() {

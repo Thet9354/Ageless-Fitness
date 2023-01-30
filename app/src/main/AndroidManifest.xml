@@ -59,7 +59,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".SignIn_Activity"
+            android:name=".OnBoarding.SignIn_Activity"
             android:exported="false"
             android:label="@string/title_activity_sign_in"
             android:theme="@style/Theme.AgelessFitness.NoActionBar">
