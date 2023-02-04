@@ -9,8 +9,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
+import com.example.agelessfitness.Database.DatabaseHelper;
+import com.example.agelessfitness.Database.WorkoutDatabaseHelper;
+import com.example.agelessfitness.OnBoarding.RegisterActivity;
 import com.parse.ParseUser;
 
 import java.math.BigDecimal;
@@ -31,7 +35,11 @@ public class Workout_Summary extends FragmentActivity {
     private Date startTimeDate;
     private Date finishTimeDate;
 
+    String time;
+
     private Intent intent;
+
+    WorkoutDatabaseHelper workoutDatabaseHelper;
 
 
     @Override
@@ -50,11 +58,9 @@ public class Workout_Summary extends FragmentActivity {
         workoutType.setText(workouts);
         numOfActivities = 1;
 
-//        String workoutTypeString = createWorkoutString(workouts);
-//        workoutType.setText(workoutTypeString);
 
         int finalTime = (int) getIntent().getIntExtra("finalTime", 0);
-        String time = createTimerString(finalTime);
+        time = createTimerString(finalTime);
         timeDisplay.setText(String.valueOf(time));
 
         calories = calculateCalories(finalTime, numOfActivities);
@@ -69,7 +75,9 @@ public class Workout_Summary extends FragmentActivity {
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                submitWorkout(time, workoutTypeString);
+
+                addData();
+
                 Intent i = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(i);
                 Animatoo.animateFade(Workout_Summary.this);
@@ -78,39 +86,17 @@ public class Workout_Summary extends FragmentActivity {
 
     }
 
-//    private void submitWorkout(String time, String workoutTypeString) {
-//        Workout workout = new Workout();
-//        workout.setStartDate(startTimeDate);
-//        workout.setKeyEnd(finishTimeDate);
-//        workout.setCalories(calories);
-//        workout.setDuration(time);
-//        workout.setWorkoutType(workoutTypeString);
-//        workout.setKeyUser(ParseUser.getCurrentUser());
-//
-//        workout.saveInBackground((e) ->{
-//            if(e != null){
-//                Log.e(TAG, "ERROR WHILE SAVING");
-//            } else {
-//                Log.i(TAG, "Save Success");
-//            }
-//        });
-//
-//    }
+    private void addData() {
 
-//    public String createWorkoutString(List<String> workouts){
-//        String workoutTypeString = "";
-//
-//        for(int i = 0; i < workouts.size(); i++){
-//            if(!(i < workouts.size())){
-//                workoutTypeString = workoutTypeString + workouts.get(i);
-//            } else if(i == 0) {
-//                workoutTypeString = workouts.get(i);
-//            } else {
-//                workoutTypeString = workoutTypeString + ", " + workouts.get(i);
-//            }
-//        }
-//        return workoutTypeString;
-//    }
+        workoutDatabaseHelper = new WorkoutDatabaseHelper(this);
+        boolean isInserted = workoutDatabaseHelper.insertData(workouts, String.valueOf(time), String.valueOf(calories));
+
+        if (isInserted) {
+            Toast.makeText(Workout_Summary.this, "Workout inserted", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(Workout_Summary.this, "Workout not inserted", Toast.LENGTH_SHORT).show();
+        }
+    }
 
     public String createTimerString(int finalTime){
 
@@ -142,9 +128,6 @@ public class Workout_Summary extends FragmentActivity {
 
     private double calculateCalories(int finalTime, int numOfActivities){
 
-//        ParseUser user = ParseUser.getCurrentUser();
-//        Integer w = (Integer) user.get("weight");
-
 
         double cal = 0.0;
         int MET = 0;    //MET = metabolic equivalent for task
@@ -169,7 +152,6 @@ public class Workout_Summary extends FragmentActivity {
         }
 
         double time = ((double) finalTime) / ((double) 60);
-        //kg --> pounds formula: lb/2.2046
         double kgConv = ((double) 75/2.2046);  //kilogram conversion from weight
         //Log.i(TAG, String.valueOf(kgConv));
 

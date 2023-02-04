@@ -100,11 +100,11 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case R.id.nav_signOut:
-                        //TODO: SignOut of account
+                        System.exit(0);
                         break;
 
                     case R.id.nav_Exit:
-                        finish();
+                        System.exit(0);
                         break;
 
                 }

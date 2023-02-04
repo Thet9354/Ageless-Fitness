@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".OnBoarding.SplashPage_Activity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ageless Fitness"
+        android:textColor="@color/purple_500"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="250dp"/>
+
+    <TextView
+        android:id="@+id/txtView_creator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Made By: Lance Lai Jia Ler(P2124731) and Choi Song Yang Daniel(P2124827)"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:visibility="invisible"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/txtView_forFun"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="What would do old folks do without me..."
+        android:layout_gravity="center_horizontal"
+        android:visibility="invisible"
+        android:layout_marginTop="10dp"/>
+
+</LinearLayout>

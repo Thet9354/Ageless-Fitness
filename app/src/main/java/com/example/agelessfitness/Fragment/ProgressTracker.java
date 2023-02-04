@@ -2,19 +2,24 @@ package com.example.agelessfitness.Fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.Toast;
 
+import com.example.agelessfitness.Adapter.WorkoutAdapter;
+import com.example.agelessfitness.Database.WorkoutDatabaseHelper;
 import com.example.agelessfitness.R;
 import com.example.agelessfitness.posedetector.ChooserActivity;
 import com.github.mikephil.charting.charts.BarChart;
@@ -31,12 +36,14 @@ import java.util.ArrayList;
 
 public class ProgressTracker extends Fragment {
 
-    private BarChart bar_chart;
-    private PieChart pie_chart;
-
     private Button btn_poseDetector;
 
     private androidx.recyclerview.widget.RecyclerView rv_pastProgress;
+
+    ArrayList<String> workout, time, calories;
+    WorkoutDatabaseHelper workoutDatabaseHelper;
+    WorkoutAdapter workoutAdapter;
+
 
     private Context mContext;
 
@@ -63,10 +70,7 @@ public class ProgressTracker extends Fragment {
 
     private void findViews(View v) {
 
-        bar_chart = v.findViewById(R.id.bar_chart);
-        pie_chart = v.findViewById(R.id.pie_chart);
         btn_poseDetector = v.findViewById(R.id.btn_poseDetector);
-
 
         rv_pastProgress = v.findViewById(R.id.rv_pastProgress);
 
@@ -86,52 +90,35 @@ public class ProgressTracker extends Fragment {
 
     private void initUI() {
 
-        //Initialize array list
-        ArrayList<BarEntry> barEntries = new ArrayList<>();
-        ArrayList<PieEntry> pieEntries = new ArrayList<>();
+        workoutDatabaseHelper = new WorkoutDatabaseHelper(mContext);
+        workout = new ArrayList<>();
+        time = new ArrayList<>();
+        calories = new ArrayList<>();
 
-        //Use for loop
-        for (int i = 0; i<8; i++)
+        workoutAdapter = new WorkoutAdapter(mContext, workout, time, calories);
+        rv_pastProgress.setAdapter(workoutAdapter);
+        rv_pastProgress.setLayoutManager(new LinearLayoutManager(mContext));
+        displayData();
+
+
+    }
+
+    private void displayData() {
+        Cursor cursor = workoutDatabaseHelper.getAllData();
+        if (cursor.getCount()==0)
         {
-            //Convert to float
-            float value = (float) (i*10.0);
-            //Initialize bar chart
-            BarEntry barEntry = new BarEntry(i, value);
-            //Initialize pie chart entry
-            PieEntry pieEntry = new PieEntry(i,value);
-            //Add values in array list
-            barEntries.add(barEntry);
-            pieEntries.add(pieEntry);
+            Toast.makeText(mContext, "No existing workout record", Toast.LENGTH_SHORT).show();
+            return;
         }
+        else
+        {
+            while (cursor.moveToNext())
+            {
+                workout.add(cursor.getString(1));
+                time.add(cursor.getString(2));
+                calories.add(cursor.getString(3));
 
-        //Initial pie data set
-        BarDataSet barDataSet = new BarDataSet(barEntries, "Weekly");
-        //Set colors
-        barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
-        //Hide draw values
-        barDataSet.setDrawValues(false);
-        //Set pie data
-        bar_chart.setData(new BarData(barDataSet));
-        //Set animation
-        bar_chart.animateY(3000);
-        //Hide description
-        bar_chart.getDescription().setText("Activity Progress");
-        bar_chart.getDescription().setTextSize(15);
-        bar_chart.getDescription().setTextColor(Color.BLUE);
-
-        //Initial pie data set
-        PieDataSet pieDataSet = new PieDataSet(pieEntries, "Weekly");
-        //Set colors
-        pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
-        //Set pie data
-        pie_chart.setData(new PieData(pieDataSet));
-        //Set animation
-        pie_chart.animateXY(3000, 3000);
-        //Hide description
-        pie_chart.getDescription().setEnabled(false);
-
-
-        //Init RecyclerView
-
+            }
+        }
     }
 }

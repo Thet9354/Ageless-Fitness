@@ -15,6 +15,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.example.agelessfitness.Call.ContactList_Activity;
 import com.example.agelessfitness.LegStretchWorkout_Activity;
 import com.example.agelessfitness.R;
 import com.example.agelessfitness.Workout_Activity;
@@ -22,7 +23,7 @@ import com.example.agelessfitness.Workout_Activity;
 
 public class Home extends Fragment {
 
-    private ImageView imgView_profile, btn_startWheelChair, btn_startLegStretches;
+    private ImageView imgView_profile, btn_startWheelChair, btn_startLegStretches, imgView_contact;
 
     private LinearLayout ll_wheelChair, ll_legStretches;
 
@@ -58,12 +59,20 @@ public class Home extends Fragment {
         imgView_profile = v.findViewById(R.id.imgView_profile);
         btn_startWheelChair = v.findViewById(R.id.btn_startWheelChair);
         btn_startLegStretches = v.findViewById(R.id.btn_startLegStretches);
+        imgView_contact = v.findViewById(R.id.imgView_contact);
 
         pageDirectories();
     }
 
 
     private void pageDirectories() {
+
+        imgView_contact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, ContactList_Activity.class));
+            }
+        });
 
         btn_startWheelChair.setOnClickListener(new View.OnClickListener() {
             @Override

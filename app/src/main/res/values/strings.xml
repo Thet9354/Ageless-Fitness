@@ -37,7 +37,6 @@
     </string-array>
 
 
-
     <string name="java_entry_title" translatable="false">Run the Application</string>
     <string name="kotlin_entry_title" translatable="false">Run the ML Kit quickstart written in Kotlin</string>
     <string name="ok" translatable="false">OK</string>

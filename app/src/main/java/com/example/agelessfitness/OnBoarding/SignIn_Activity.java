@@ -1,7 +1,11 @@
 package com.example.agelessfitness.OnBoarding;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.biometric.BiometricPrompt;
+import androidx.core.content.ContextCompat;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +17,7 @@ import com.example.agelessfitness.Database.DatabaseHelper;
 import com.example.agelessfitness.MainActivity;
 import com.example.agelessfitness.R;
 
+import java.util.concurrent.Executor;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,11 +25,15 @@ public class SignIn_Activity extends AppCompatActivity {
 
     private com.google.android.material.textfield.TextInputEditText editTxt_username, editTxt_password;
     private TextView txtView_signUp, txtView_loopHole;
-    private Button btn_logIn;
+    private Button btn_logIn, btn_biometricLogin;
 
     private String mUsername, mPassword;
 
     DatabaseHelper myDb;
+
+    private Executor executor;
+    private BiometricPrompt biometricPrompt;
+    private BiometricPrompt.PromptInfo promptInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +42,42 @@ public class SignIn_Activity extends AppCompatActivity {
 
         initWidget();
 
+        initUI();
+
         pageDirectories();
+    }
+
+    private void initUI() {
+        executor = ContextCompat.getMainExecutor(this);
+        biometricPrompt = new BiometricPrompt(SignIn_Activity.this, executor, new BiometricPrompt.AuthenticationCallback() {
+            @Override
+            public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
+                super.onAuthenticationError(errorCode, errString);
+                //f there's any error that comes up while auth
+                Toast.makeText(SignIn_Activity.this, "Error while using biometric login", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
+                super.onAuthenticationSucceeded(result);
+                //Authentication successful
+                Toast.makeText(SignIn_Activity.this, "Authentication successful", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onAuthenticationFailed() {
+                super.onAuthenticationFailed();
+                //fail to authenticate
+                Toast.makeText(SignIn_Activity.this, "Authentication failed", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //Setup title, description on auth dialog
+        promptInfo = new BiometricPrompt.PromptInfo.Builder()
+                .setTitle("Biometric Authentiction")
+                .setSubtitle("Login using fingerprint or face")
+                .setNegativeButtonText("Cancel")
+                .build();
     }
 
     private void pageDirectories() {
@@ -63,6 +107,14 @@ public class SignIn_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
+            }
+        });
+
+        btn_biometricLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //show auth dialog
+                biometricPrompt.authenticate(promptInfo);
             }
         });
     }
@@ -137,5 +189,6 @@ public class SignIn_Activity extends AppCompatActivity {
 
         //Button
         btn_logIn = findViewById(R.id.btn_logIn);
+        btn_biometricLogin = findViewById(R.id.btn_biometricLogin);
     }
 }

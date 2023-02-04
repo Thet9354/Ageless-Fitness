@@ -16,74 +16,11 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <CalendarView
-                android:id="@+id/cv_leaderBoard"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_leaderBoard"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"/>
-
-            <LinearLayout
-                android:id="@+id/ll_wheelChair"
-                android:layout_width="165dp"
-                android:layout_height="225dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/round_back_white10_20"
-                android:orientation="vertical"
-                android:padding="10dp">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Calories"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="5dp"/>
-                    
-                    <ImageView
-                        android:layout_width="48dp"
-                        android:layout_height="42dp"
-                        android:src="@drawable/burn"
-                        android:layout_marginStart="35dp"
-                        android:layout_gravity="center_vertical"/>
-
-                </LinearLayout>
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <com.google.android.material.progressindicator.CircularProgressIndicator
-                        android:id="@+id/PI_calories"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:progress="25"
-                        app:trackColor="@color/white"
-                        app:indicatorColor="#2F80ED"
-                        app:indicatorSize="140dp"
-                        android:layout_gravity="center_horizontal"
-                        app:trackThickness="11dp"
-                        app:trackCornerRadius="8dp"/>
-
-                    <TextView
-                        android:id="@+id/txtView_calories"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="55 \nKcal"
-                        android:textColor="@color/black"
-                        android:gravity="center_horizontal"
-                        android:textSize="20sp"
-                        android:layout_centerInParent="true"/>
-
-                </RelativeLayout>
-
-            </LinearLayout>
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
 
         </LinearLayout>
 

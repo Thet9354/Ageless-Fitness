@@ -82,8 +82,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void addData() {
 
-        //TODO: Add the user to firebase later
-
         myDb = new DatabaseHelper(this);
         boolean isUsernameTaken = myDb.isUsernameTaken(mUsername);
         if (isUsernameTaken) {
@@ -91,9 +89,10 @@ public class RegisterActivity extends AppCompatActivity {
         } else {
             boolean isInserted = myDb.insertData(mUsername, mPassword);
             if (isInserted) {
-                Toast.makeText(RegisterActivity.this, "Data inserted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this, "Registration successful", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
             } else {
-                Toast.makeText(RegisterActivity.this, "Data not inserted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this, "Error occurred during registration, please try again ", Toast.LENGTH_SHORT).show();
             }
         }
     }

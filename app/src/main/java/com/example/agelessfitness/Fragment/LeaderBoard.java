@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,7 +12,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,16 +25,13 @@ import com.example.agelessfitness.Adapter.LeaderBoardAdapter;
 import com.example.agelessfitness.Model.LeaderBoardModel;
 import com.example.agelessfitness.R;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
 
 public class LeaderBoard extends Fragment {
 
-    private CalendarView cv_leaderBoard;
-    private com.google.android.material.progressindicator.CircularProgressIndicator PI_calories;
-    private TextView txtView_calories;
+    private androidx.recyclerview.widget.RecyclerView rv_leaderBoard;
+
 
     private LeaderBoardAdapter leaderBoardAdapter;
 
@@ -45,7 +40,7 @@ public class LeaderBoard extends Fragment {
     private Context mContext;
 
     int[] competitorPic = {R.drawable.john, R.drawable.omar, R.drawable.linda,
-            R.drawable.img};
+            R.drawable.auntie};
 
     int[] competitorProgressPic = {R.drawable.up, R.drawable.up, R.drawable.up,
             R.drawable.up};
@@ -73,38 +68,12 @@ public class LeaderBoard extends Fragment {
 
     private void findViews(View v) {
 
-        //CalendarView
-        cv_leaderBoard = v.findViewById(R.id.cv_leaderBoard);
-
-        //CircularProgressIndicator
-        PI_calories = v.findViewById(R.id.PI_calories);
-
-        //TextView
-        txtView_calories = v.findViewById(R.id.txtView_calories);
-
+        rv_leaderBoard = v.findViewById(R.id.rv_leaderBoard);
 
         initUI();
     }
 
     private void initUI() {
-
-        showDialog();
-    }
-
-    private void showDialog() {
-
-        final Dialog dialog = new Dialog(mContext);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.bottom_sheet_layout);
-
-        //TODO: Initialize the recylerView and put whatever happens to it over here
-
-        RecyclerView rv_leaderBoard = dialog.findViewById(R.id.rv_leaderBoard);
-
-        //for better performance of recyclerview.
-
-//        int spaceInPixels = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16, getResources().getDisplayMetrics());
-//        rv_course.addItemDecoration(new SpaceItemDecoration(spaceInPixels));
 
         rv_leaderBoard.setHasFixedSize(true);
 
@@ -150,13 +119,7 @@ public class LeaderBoard extends Fragment {
             leaderBoardAdapter.notifyDataSetChanged();
         }
 
-        dialog.show();
-        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
-        dialog.getWindow().setGravity(Gravity.BOTTOM);
     }
 
+    }
 
-
-}

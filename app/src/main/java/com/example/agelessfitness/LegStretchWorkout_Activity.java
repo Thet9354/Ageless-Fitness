@@ -1,8 +1,11 @@
 package com.example.agelessfitness;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
@@ -12,11 +15,13 @@ import android.widget.LinearLayout;
 
 public class LegStretchWorkout_Activity extends AppCompatActivity {
 
-    private ImageView btn_back;
+    private ImageView btn_back, btn_startWorkout;
 
     private CardView cv_hamstringStretch, cv_quadStretch, cv_calfStretch, cv_innerThighStretch;
 
     private LinearLayout ll_hamstringStretchDemo, ll_quadStretchDemo, ll_calfStretchDemo, ll_innerThighStretchDemo;
+
+    private String workouts = "Leg Stretches";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +34,38 @@ public class LegStretchWorkout_Activity extends AppCompatActivity {
     }
 
     private void pageDirectories() {
+
+        btn_startWorkout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(LegStretchWorkout_Activity.this);
+                builder.setTitle("Bluetooth Connection");
+                builder.setMessage("Do you want to connect your Bluetooth?");
+
+                builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(getApplicationContext(), Bluetooth_Activity.class);
+                        intent.putExtra("Workout", workouts);
+                        startActivity(intent);
+                    }
+                });
+
+                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(getApplicationContext(), Workout_timer.class);
+                        intent.putExtra("Workout", workouts);
+                        startActivity(intent);
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+
+            }
+        });
+
 
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,6 +143,7 @@ public class LegStretchWorkout_Activity extends AppCompatActivity {
 
         //ImageView
         btn_back = findViewById(R.id.btn_back);
+        btn_startWorkout = findViewById(R.id.btn_startWorkout);
 
         //CardView
         cv_hamstringStretch = findViewById(R.id.cv_hamstringStretch);
