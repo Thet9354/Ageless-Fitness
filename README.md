@@ -1,7 +1,7 @@
 Ageless-Fitness is a multi purpose app designed to assist, educate and provide a seamless experience for elderely when it comes to taking care of thier health.
 
 Features include:
-◉ Google/Facebook Registration/Login/n
+◉ Google/Facebook Registration/Login
 ◉ Biometric + Face Recognition Authentication
 ◉ Calories counter when exercising
 ◉ Health summary statement
